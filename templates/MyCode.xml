@@ -9,11 +9,6 @@
       <option name="OTHER" value="true" />
     </context>
   </template>
-  <template name="warn" value="app.logger.warn('$END$')" description="eggjs app.logger.warn(x)" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="TypeScript" value="true" />
-    </context>
-  </template>
   <template name="thread" value="        Thread t = new Thread() {&#10;&#9;&#9;&#9;@Override&#10;&#9;&#9;&#9;public void run() {&#10;&#9;&#9;&#9;    $END$&#10;&#9;&#9;&#9;&#9;super.run();&#10;&#9;&#9;&#9;}&#10;&#9;&#9;} ;&#10;&#9;&#9;t.start();" description="多线程启动" toReformat="true" toShortenFQNames="true">
     <context>
       <option name="JAVA_CODE" value="true" />
