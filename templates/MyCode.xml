@@ -24,15 +24,30 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="kdepfull" value="apiVersion: apps/v1&#10;kind: Deployment&#10;metadata:&#10;  name: $NAME$&#10;  labels:&#10;    app: $NAME$&#10;spec:&#10;  replicas: 1&#10;  selector:&#10;    matchLabels:&#10;      app: $NAME$&#10;  template:&#10;    metadata:&#10;      name: $NAME$&#10;      labels:&#10;        app: $NAME$&#10;    spec:&#10;      containers:&#10;        - name: $NAME$&#10;          image: $IMAGE$&#10;          imagePullPolicy: IfNotPresent&#10;          command:&#10;            - /bin/ping&#10;            - baidu.com&#10;          ports:&#10;            - containerPort: 8080&#10;              protocol: TCP&#10;            - containerPort: 7979&#10;              protocol: UDP&#10;          env:&#10;            - name: MYSQL_DB_NAME&#10;              valueFrom:&#10;                configMapKeyRef:&#10;                  name: mysql-config&#10;                  key: db_name&#10;          volumeMounts:&#10;            - name: mysql-config&#10;              mountPath: /etc/mysql/config/&#10;      volumes:&#10;        - name: mysql-config&#10;          configMap:&#10;            name: mysql-config&#10;            items:&#10;              - key: db_name&#10;                path: db&#10;      restartPolicy: Always&#10;" description="Kubernetes Deployment Full demo" toReformat="true" toShortenFQNames="true">
+  <template name="kDeploymentFull" value="apiVersion: apps/v1&#10;kind: Deployment&#10;metadata:&#10;  name: $NAME$&#10;  labels:&#10;    app: $NAME$&#10;spec:&#10;  replicas: 1&#10;  selector:&#10;    matchLabels:&#10;      app: $NAME$&#10;  template:&#10;    metadata:&#10;      name: $NAME$&#10;      labels:&#10;        app: $NAME$&#10;    spec:&#10;      containers:&#10;        - name: $NAME$&#10;          image: $IMAGE$&#10;          imagePullPolicy: IfNotPresent&#10;          command:&#10;            - /bin/ping&#10;            - baidu.com&#10;          ports:&#10;            - containerPort: 8080&#10;              protocol: TCP&#10;            - containerPort: 7979&#10;              protocol: UDP&#10;          env:&#10;            - name: MYSQL_DB_NAME&#10;              valueFrom:&#10;                configMapKeyRef:&#10;                  name: mysql-config&#10;                  key: db_name&#10;          volumeMounts:&#10;            - name: mysql-config&#10;              mountPath: /etc/mysql/config/&#10;      volumes:&#10;        - name: mysql-config&#10;          configMap:&#10;            name: mysql-config&#10;            items:&#10;              - key: db_name&#10;                path: db&#10;      restartPolicy: Always&#10;" description="Kubernetes Deployment Full demo" toReformat="true" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="IMAGE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="KUBERNETES_RESOURCE" value="true" />
     </context>
   </template>
-  <template name="kSvcClusterIP" value="apiVersion: v1&#10;kind: Service&#10;metadata:&#10;  annotations:&#10;    traefik.ingress.kubernetes.io/affinity: &quot;true&quot;&#10;    traefik.ingress.kubernetes.io/load-balancer-method: drr&#10;    traefik.ingress.kubernetes.io/session-cookie-name: lb&#10;  name: $NAME$&#10;  namespace: default&#10;spec:&#10;  ports:&#10;    - name: $NAME$&#10;      port: 6099&#10;      protocol: TCP&#10;      targetPort: 6099&#10;  selector:&#10;    app: $NAME$&#10;  type: ClusterIP" description="Kubernetes Service With ClusterIP" toReformat="true" toShortenFQNames="true">
+  <template name="kSvcClusterIP" value="apiVersion: v1&#10;kind: Service&#10;metadata:&#10;  annotations:&#10;    traefik.ingress.kubernetes.io/affinity: &quot;true&quot;&#10;    traefik.ingress.kubernetes.io/load-balancer-method: drr&#10;    traefik.ingress.kubernetes.io/session-cookie-name: lb&#10;  name: $NAME$&#10;  namespace: default&#10;spec:&#10;  ports:&#10;    - name: $NAME$ &#10;      port: $PORT$&#10;      protocol: TCP&#10;      targetPort: $PORT$&#10;  selector:&#10;    app: $NAME$&#10;  type: ClusterIP" description="Kubernetes Service whit ClusterIP" toReformat="true" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PORT" expression="" defaultValue="&quot;8080&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="KUBERNETES_RESOURCE" value="true" />
+    </context>
+  </template>
+  <template name="kIngress" value="apiVersion: extensions/v1beta1&#10;kind: Ingress&#10;metadata:&#10;  name: $NAME$&#10;  namespace: default&#10;spec:&#10;  rules:&#10;    - host: $NAME$.xxx.com&#10;      http:&#10;        paths:&#10;          - backend:&#10;              serviceName: $NAME$&#10;              servicePort: $PORT$&#10;            path: /" description="Kubernetes Ingress" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PORT" expression="" defaultValue="&quot;8080&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="KUBERNETES_RESOURCE" value="true" />
+    </context>
+  </template>
+  <template name="kConfigMapFull" value="apiVersion: v1&#10;kind: ConfigMap&#10;metadata:&#10;  name: $NAME$&#10;  namespace: default&#10;data:&#10;  $KEY$: testdb&#10;  my.cnf: |&#10;    [mysqld]&#10;    log-bin = mysql-bin&#10;  app.properties: |&#10;    property.1 = value-1&#10;$END$" description="Kubernetes ConfigMap Full" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="KEY" expression="" defaultValue="&quot;config_name&quot;" alwaysStopAt="true" />
     <context>
       <option name="KUBERNETES_RESOURCE" value="true" />
     </context>
