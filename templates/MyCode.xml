@@ -62,4 +62,9 @@
       <option name="KUBERNETES_RESOURCE" value="true" />
     </context>
   </template>
+  <template name="kpvc" value="apiVersion: v1&#10;kind: PersistentVolumeClaim&#10;metadata:&#10;  name: hostpast&#10;  namespace: default&#10;spec:&#10;  accessModes:&#10;    - ReadWriteOnce&#10;    - ReadOnlyMany&#10;    - ReadWriteMany&#10;  volumeMode: Filesystem&#10;  storageClassName: slow&#10;  resources:&#10;    requests:&#10;      storage: 10Gi&#10;  volumeName: hostpast" description="Kubernetes PersistentVolumeClaim" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="KUBERNETES_RESOURCE" value="true" />
+    </context>
+  </template>
 </templateSet>
