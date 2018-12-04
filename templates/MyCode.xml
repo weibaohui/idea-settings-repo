@@ -78,4 +78,17 @@
       <option name="KUBERNETES_RESOURCE" value="true" />
     </context>
   </template>
+  <template name="mvnjarexec" value="&lt;build&gt;&#10;        &lt;pluginManagement&gt;&#10;            &lt;plugins&gt;&#10;                &lt;plugin&gt;&#10;                    &lt;!--执行mvn assembly:assembly--&gt;&#10;                    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;&#10;                    &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;&#10;                    &lt;version&gt;2.4.1&lt;/version&gt;&#10;                    &lt;configuration&gt;&#10;                        &lt;!-- get all project dependencies --&gt;&#10;                        &lt;descriptorRefs&gt;&#10;                            &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;&#10;                        &lt;/descriptorRefs&gt;&#10;                        &lt;!-- MainClass in mainfest make a executable jar --&gt;&#10;                        &lt;archive&gt;&#10;                            &lt;manifest&gt;&#10;                                &lt;mainClass&gt;com.oauthd.hadoop.wc.WordCountMapReduce&lt;/mainClass&gt;&#10;                            &lt;/manifest&gt;&#10;                        &lt;/archive&gt;&#10;&#10;                    &lt;/configuration&gt;&#10;                    &lt;executions&gt;&#10;                        &lt;execution&gt;&#10;                            &lt;id&gt;make-assembly&lt;/id&gt;&#10;                            &lt;!-- bind to the packaging phase --&gt;&#10;                            &lt;phase&gt;package&lt;/phase&gt;&#10;                            &lt;goals&gt;&#10;                                &lt;goal&gt;single&lt;/goal&gt;&#10;                            &lt;/goals&gt;&#10;                        &lt;/execution&gt;&#10;                    &lt;/executions&gt;&#10;                &lt;/plugin&gt;&#10;            &lt;/plugins&gt;&#10;        &lt;/pluginManagement&gt;&#10;    &lt;/build&gt;" description="包含依赖的jar可执行" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="testSpringbootMVC" value="&#10;&#10;@SpringBootTest&#10;@WebAppConfiguration&#10;@RunWith(SpringRunner.class)&#10;public class $CONTROLLER$ControllerTest {&#10;    //注入webApplicationContext&#10;    @Autowired&#10;    private WebApplicationContext webApplicationContext;&#10;&#10;    private MockMvc mockMvc;&#10;&#10;    //设置mockMvc&#10;    @Before&#10;    public void setMockMvc() {&#10;        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();&#10;    }&#10;&#10;&#10;    @Test&#10;    public void hello() throws Exception {&#10;        mockMvc.perform(MockMvcRequestBuilders.get(&quot;$URL$&quot;).accept(MediaType.APPLICATION_JSON_UTF8))&#10;                .andExpect(content().string(&quot;$EXCEPT$&quot;))&#10;                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))&#10;                .andDo(print())&#10;                .andReturn();&#10;    }&#10;}" description="springboot mvc test" toReformat="false" toShortenFQNames="true" useStaticImport="true">
+    <variable name="CONTROLLER" expression="" defaultValue="&quot;Index&quot;" alwaysStopAt="true" />
+    <variable name="URL" expression="" defaultValue="&quot;/index/hello&quot;" alwaysStopAt="true" />
+    <variable name="EXCEPT" expression="" defaultValue="&quot;hello world&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
 </templateSet>
