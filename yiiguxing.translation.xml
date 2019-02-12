@@ -1,6 +1,8 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="unknown" />
+      <item value="unkonwn" />
       <item value="intersect" />
       <item value="明天" />
       <item value="tomorror" />
@@ -13,8 +15,9 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="7" />
-        <entry key="ENGLISH" value="8" />
+        <entry key="CHINESE" value="8" />
+        <entry key="ENGLISH" value="9" />
+        <entry key="GREEK" value="1" />
       </map>
     </option>
   </component>
