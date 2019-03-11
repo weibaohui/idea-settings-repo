@@ -1,6 +1,10 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="纬度" />
+      <item value="维度" />
+      <item value="longitude" />
+      <item value="经度" />
       <item value="SECONDS" />
       <item value="unknown" />
       <item value="unkonwn" />
@@ -16,8 +20,8 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="9" />
-        <entry key="ENGLISH" value="10" />
+        <entry key="CHINESE" value="10" />
+        <entry key="ENGLISH" value="12" />
         <entry key="GREEK" value="1" />
       </map>
     </option>
