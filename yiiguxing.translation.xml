@@ -1,6 +1,8 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="phone" />
+      <item value="mobile" />
       <item value="纬度" />
       <item value="维度" />
       <item value="longitude" />
@@ -20,8 +22,8 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="10" />
-        <entry key="ENGLISH" value="12" />
+        <entry key="CHINESE" value="12" />
+        <entry key="ENGLISH" value="14" />
         <entry key="GREEK" value="1" />
       </map>
     </option>
