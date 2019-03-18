@@ -105,4 +105,10 @@
       <option name="JAVA_CODE" value="true" />
     </context>
   </template>
+  <template name="kDeployHostPath" value="apiVersion: apps/v1&#10;kind: Deployment&#10;metadata:&#10;  labels:&#10;    app: $NAME$&#10;  name: $NAME$&#10;spec:&#10;  replicas: 1&#10;  selector:&#10;    matchLabels:&#10;      app: $NAME$&#10;  strategy: {}&#10;  template:&#10;    metadata:&#10;      labels:&#10;        app: $NAME$&#10;    spec:&#10;      containers:&#10;      - image: nginx:alpine&#10;        name: nginx&#10;        resources: {}&#10;        volumeMounts:&#10;         - name: test&#10;           readOnly: false&#10;           mountPath: /test/&#10;      - image: alpine&#10;        name: alpine&#10;        volumeMounts:&#10;         - name: test&#10;           readOnly: false&#10;           mountPath: /test/&#10;        command:&#10;         - ping&#10;         - &quot;baidu.com&quot;&#10;      nodeSelector:&#10;         stage: test&#10;      volumes:&#10;      - name: test&#10;#        emptyDir: {}&#10;        hostPath:&#10;          path: /tmp/test/" description="Kubernetes Deployment whit HostPath" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="KUBERNETES_RESOURCE" value="true" />
+    </context>
+  </template>
 </templateSet>
