@@ -111,4 +111,16 @@
       <option name="KUBERNETES_RESOURCE" value="true" />
     </context>
   </template>
+  <template name="kCronJob" value="apiVersion: batch/v1beta1&#10;kind: CronJob&#10;metadata:&#10;  labels:&#10;    run: $NAME$&#10;  name: $NAME$&#10;spec:&#10;  concurrencyPolicy: Allow&#10;  failedJobsHistoryLimit: 1&#10;  jobTemplate:&#10;    spec:&#10;      template:&#10;        metadata:&#10;          labels:&#10;            run: $NAME$&#10;        spec:&#10;          containers:&#10;          - name: $NAME$&#10;            image: busybox&#10;            imagePullPolicy: Always&#10;            args:&#10;            - /bin/sh&#10;            - -c&#10;            - date; echo Hello from the Kubernetes cluster&#10;          restartPolicy: OnFailure&#10;  schedule: '*/1 * * * *'&#10;  successfulJobsHistoryLimit: 3&#10;" description="Kubernetes Cron Job" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="KUBERNETES_RESOURCE" value="true" />
+    </context>
+  </template>
+  <template name="kJob" value="apiVersion: batch/v1&#10;kind: Job&#10;metadata:&#10;  name: $NAME$&#10;spec:&#10;  parallelism: 1&#10;  completions: 6&#10;  template:&#10;    metadata:&#10;      name: $NAME$&#10;    spec:&#10;      restartPolicy: Never&#10;      containers:&#10;      - name: $NAME$&#10;        image: busybox&#10;        command:&#10;        - &quot;bin/sh&quot;&#10;        - &quot;-c&quot;&#10;        - &quot;for i in 9 8 7 6 5 4 3 2 1; do echo $i; done&quot;" description="Kubernetes  Job" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="KUBERNETES_RESOURCE" value="true" />
+    </context>
+  </template>
 </templateSet>
